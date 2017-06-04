@@ -23,8 +23,6 @@ public class FXSlider {
 			
 			@Override
 			protected Void call() throws Exception {
-				boolean fxApplicationThread = Platform.isFxApplicationThread();
-				System.out.println("Is call on FXApplicationThread: " + fxApplicationThread);
 			
 				//this is an infinite loop because now I only need to make this thread once, pausing and starting it, as opposed to making many threads
 				for(;;){
@@ -33,6 +31,7 @@ public class FXSlider {
 					if(model.isPlaying()){
 						fxcontroller.getVolumeBar().setProgress(model.getVolume());
 						
+						//This is for progressbar for music
 						fxcontroller.getProgressBar().setValue(fxcontroller.getController().getPercentageDone());
 						if(fxcontroller.getController().getPercentageDone() == 100){
 							model.shuffle();
@@ -81,10 +80,8 @@ public class FXSlider {
 	//volume progress bar
 	public void setOnVolumeClicked(MouseEvent event){
         double mouseX = event.getSceneX();
-        System.out.println(mouseX);
         double percent = (mouseX-890)/180;
 
-        System.out.println(percent);
         fxcontroller.getVolumeBar().setProgress(percent);
         model.setVolume(percent);
 	}

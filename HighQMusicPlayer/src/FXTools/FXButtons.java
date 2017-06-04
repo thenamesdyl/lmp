@@ -27,7 +27,7 @@ public class FXButtons {
 	    
 				
 		//this will start the music on the next song
-		fxcontroller.getPlay().setText("▶");
+		fxcontroller.getPlay().setText("⏸");
 		fxcontroller.getController().shuffle();
 		fxcontroller.getFXListview().onMusicChangeSettings();
 		
@@ -47,14 +47,14 @@ public class FXButtons {
 		}
 		
 		if(!model.isPlaying()){
-			fxcontroller.getPlay().setText("⏸");
+			fxcontroller.getPlay().setText("▶");
 			fxcontroller.getSliderThread().cancel();
 			
 			
 		}else{
 			
 			//unfortunately have to create another thread as I could not figure out how to simply pause the thread
-			fxcontroller.getPlay().setText("▶");
+			fxcontroller.getPlay().setText("⏸");
 			fxcontroller.getFXSlider().startSliderThread();
 		}
 	}
