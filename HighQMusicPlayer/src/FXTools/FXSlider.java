@@ -94,6 +94,7 @@ public class FXSlider {
         	fxcontroller.getVolumeImage().setImage(volumeImage);
         }
         
+        
         fxcontroller.getVolumeBar().setProgress(percent);
         model.setVolume(percent);
 	}
