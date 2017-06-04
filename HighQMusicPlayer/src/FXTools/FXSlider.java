@@ -5,6 +5,7 @@ import MP.PlayerModel;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 public class FXSlider {
@@ -82,6 +83,17 @@ public class FXSlider {
         double mouseX = event.getSceneX();
         double percent = (mouseX-890)/180;
 
+        if(percent < .2){
+        	Image volumeImageMute = new Image("images/volumeButtonMute.png");
+        	fxcontroller.getVolumeImage().setImage(volumeImageMute);
+        }else if(percent < .8){
+        	Image volumeImageSecond = new Image("images/volumeButtonSecond.png");
+        	fxcontroller.getVolumeImage().setImage(volumeImageSecond);
+        }else{
+        	Image volumeImage= new Image("images/volumeButton.png");
+        	fxcontroller.getVolumeImage().setImage(volumeImage);
+        }
+        
         fxcontroller.getVolumeBar().setProgress(percent);
         model.setVolume(percent);
 	}
