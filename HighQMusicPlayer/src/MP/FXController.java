@@ -66,6 +66,7 @@ public class FXController extends Application implements Initializable{
 	@FXML Slider progressBar;
 	@FXML ListView<String> songList;
 	@FXML ProgressBar volumeBar;
+	@FXML ImageView volumeImage;
     
 	public static void main(String[] args) {
 		launch(args);
@@ -244,6 +245,14 @@ public class FXController extends Application implements Initializable{
 	}
 	public void setVolumeBar(ProgressBar volumeBar) {
 		this.volumeBar = volumeBar;
+	}
+
+	public ImageView getVolumeImage() {
+		return volumeImage;
+	}
+
+	public void setVolumeImage(ImageView volumeImage) {
+		this.volumeImage = volumeImage;
 	}
 	
 

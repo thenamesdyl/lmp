@@ -18,13 +18,13 @@
 <?import javafx.scene.text.Font?>
 <?scenebuilder-stylesheet ../stylesheet.css?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP.FXController">
+<AnchorPane styleClass="AnchorPane" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP.FXController">
    <children>
       <BorderPane layoutX="-184.0" layoutY="-213.0" prefHeight="988.0" prefWidth="1065.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
             <BorderPane id="southBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
                <bottom>
-                  <Slider id="playbackSlider" fx:id="progressBar" onDragDetected="#onDragDetected" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="64.0" prefWidth="1065.0" styleClass="Sliders" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER" />
+                  <Slider id="playbackSlider" fx:id="progressBar" onDragDetected="#onDragDetected" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="49.0" prefWidth="1091.0" styleClass="Sliders" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER" />
                </bottom>
                <top>
                   <TextField fx:id="artistPane" alignment="CENTER" prefHeight="50.0" prefWidth="1065.0" text="" BorderPane.alignment="CENTER" />
@@ -34,7 +34,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="253.0">
                            <children>
-                              <Button fx:id="shuffle" layoutX="1.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickedShuffleButton" prefHeight="82.0" prefWidth="258.0" text="⏭">
+                              <Button id="skipForwardButton" fx:id="shuffle" layoutX="1.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedShuffleButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="⏭">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -47,7 +47,7 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <ImageView fitHeight="74.0" fitWidth="79.0" layoutX="-3.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="volumeImage" fx:id="volumeImage" fitHeight="29.0" fitWidth="30.0" layoutX="15.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../../Desktop/volumeButton.png" />
                                              </image>
@@ -56,7 +56,7 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <ProgressBar id="volumeBar" fx:id="volumeBar" layoutY="34.0" onMouseClicked="#setOnVolumeClicked" prefHeight="18.0" prefWidth="176.0" progress="0.0" styleClass="ProgressBar" stylesheets="@stylesheet.css" />
+                                          <ProgressBar id="volumeBar" fx:id="volumeBar" layoutY="56.0" onMouseClicked="#setOnVolumeClicked" prefHeight="18.0" prefWidth="176.0" progress="0.0" styleClass="ProgressBar" stylesheets="@stylesheet.css" />
                                        </children>
                                     </AnchorPane>
                                 </items>
@@ -66,14 +66,14 @@
                   </SplitPane>
                </right>
                <center>
-                  <SplitPane id="playSplitPane" dividerPositions="0.01098901098901099" prefHeight="86.0" prefWidth="287.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                  <SplitPane id="playSplitPane" dividerPositions="0.01098901098901099" prefHeight="126.0" prefWidth="288.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="0.0" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Button id="playButton" fx:id="play" layoutY="-1.0" mnemonicParsing="false" onAction="#clickedPlayButton" prefHeight="83.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="▶">
+                              <Button id="playButton" fx:id="play" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedPlayButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="▶">
                                  <font>
-                                    <Font size="40.0" />
+                                    <Font size="36.0" />
                                  </font>
                               </Button>
                            </children>
@@ -82,11 +82,11 @@
                   </SplitPane>
                </center>
                <left>
-                  <SplitPane id="skipBackSplitPane" prefHeight="86.0" prefWidth="283.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                  <SplitPane id="skipBackSplitPane" prefHeight="86.0" prefWidth="276.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Button id="backButton" fx:id="back" layoutX="6.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickedBackButton" prefHeight="82.0" prefWidth="258.0" styleClass="Button" stylesheets="@stylesheet.css" text="⏮">
+                              <Button id="skipBackButton" fx:id="back" layoutX="13.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedBackButton" prefHeight="82.0" prefWidth="258.0" styleClass="Button" stylesheets="@stylesheet.css" text="⏮">
                                  <font>
                                     <Font name="Antonio Regular" size="36.0" />
                                  </font>
@@ -130,7 +130,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <ListView fx:id="songList" layoutY="27.0" prefHeight="650.0" prefWidth="185.0" />
+                        <ListView id="songList" fx:id="songList" layoutY="27.0" prefHeight="650.0" prefWidth="185.0" stylesheets="@stylesheet.css" />
                         <SplitPane dividerPositions="0.8888888888888888" orientation="VERTICAL" prefHeight="29.0" prefWidth="184.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
