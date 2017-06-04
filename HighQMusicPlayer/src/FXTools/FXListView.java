@@ -12,6 +12,41 @@ public class FXListView {
 		this.model = model;
 	}
 	
+	
+	public void startSelectionListener(){
+		//this is for the selection of songs via listView. When you click a song via listview it plays the song
+		fxcontroller.getSongList().getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
+			int mostRecentSelectedIndex = fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex();
+					
+			try {
+					
+					
+				if(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex).length() > 23 && model.getCurrentSong().length() > 23){
+					if(!(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex).substring(0, 23).equals(model.getCurrentSong().substring(0, 23)))){
+							
+						fxcontroller.getPlay().setText("⏸");
+						playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+						
+					}
+				}else{
+					if(!(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex).equals(model.getCurrentSong()))){
+								
+						fxcontroller.getPlay().setText("⏸");
+						playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+							
+					}
+				}
+			}catch (NullPointerException n){
+				//if theres a null pointer exception on model.getCurrentSong, it means it hasnt started yet, therefore PLAY!!!
+				fxcontroller.getPlay().setText("⏸");			
+				playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+						
+			}catch (ArrayIndexOutOfBoundsException a){
+						
+			}
+		});
+	}
+	
 	//Observable list is required for setting the items in listView
 	public void resetObservableList(){
 		fxcontroller.setFileCollection(model.getFileCollection());
@@ -35,7 +70,7 @@ public class FXListView {
 	
 	
 	
-	//when someone clicks on song from listview
+	//when someone clicks on song from listview. This is called by the listener
 	public void playSpecificSong(int indice){
 		if(!model.isPlaying()){
 			fxcontroller.getProgressBar().setOpacity(100);

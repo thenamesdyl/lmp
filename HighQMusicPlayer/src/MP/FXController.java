@@ -76,7 +76,7 @@ public class FXController extends Application implements Initializable{
 		Parent root = FXMLLoader.load(getClass().getResource("/Viewer.fxml"));
 		Scene scene = new Scene(root);
 		this.primaryStage = primaryStage;
-		primaryStage.setTitle("Local Music Player");
+		primaryStage.setTitle("HighQ Local Music Player");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
@@ -120,44 +120,10 @@ public class FXController extends Application implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		//default settings
 		listview.resetObservableList();
+		listview.startSelectionListener();
 		songList.setItems(observableList);
 		progressBar.setOpacity(0);
 		artistPane.setEditable(false);
-		
-		
-		//listeners
-		
-		//this is for the selection of songs via listView
-		songList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
-			mostRecentSelectedIndex = songList.selectionModelProperty().get().getSelectedIndex();
-			
-			try {
-			
-			
-				if(songList.getItems().get(mostRecentSelectedIndex).length() > 23 && model.getCurrentSong().length() > 23){
-					if(!(songList.getItems().get(mostRecentSelectedIndex).substring(0, 23).equals(model.getCurrentSong().substring(0, 23)))){
-					
-						play.setText("▶");
-						listview.playSpecificSong(songList.selectionModelProperty().get().getSelectedIndex());
-				
-					}
-				}else{
-					if(!(songList.getItems().get(mostRecentSelectedIndex).equals(model.getCurrentSong()))){
-						
-						play.setText("▶");
-						listview.playSpecificSong(songList.selectionModelProperty().get().getSelectedIndex());
-					
-					}
-				}
-			}catch (NullPointerException n){
-				//if theres a null pointer exception on model.getCurrentSong, it means it hasnt started yet, therefore PLAY!!!
-				play.setText("▶");			
-				listview.playSpecificSong(songList.selectionModelProperty().get().getSelectedIndex());
-				
-			}catch (ArrayIndexOutOfBoundsException a){
-				
-			}
-		});
 		
 		
 	}
@@ -273,11 +239,9 @@ public class FXController extends Application implements Initializable{
 	public void setIndice(int indice) {
 		this.indice = indice;
 	}
-
 	public ProgressBar getVolumeBar() {
 		return volumeBar;
 	}
-
 	public void setVolumeBar(ProgressBar volumeBar) {
 		this.volumeBar = volumeBar;
 	}
