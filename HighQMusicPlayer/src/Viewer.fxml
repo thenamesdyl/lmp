@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?scenebuilder-stylesheet ../stylesheet.css?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP.FXController">
+   <children>
+      <BorderPane layoutX="-184.0" layoutY="-213.0" prefHeight="988.0" prefWidth="1065.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <BorderPane id="southBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
+               <bottom>
+                  <Slider id="playbackSlider" fx:id="progressBar" onDragDetected="#onDragDetected" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="64.0" prefWidth="1065.0" styleClass="Sliders" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER" />
+               </bottom>
+               <top>
+                  <TextField fx:id="artistPane" alignment="CENTER" prefHeight="50.0" prefWidth="1065.0" text="" BorderPane.alignment="CENTER" />
+               </top>
+               <right>
+                  <SplitPane id="skipForwardSplitPane" dividerPositions="0.5057915057915058" nodeOrientation="LEFT_TO_RIGHT" prefHeight="103.0" prefWidth="520.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="253.0">
+                           <children>
+                              <Button fx:id="shuffle" layoutX="1.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickedShuffleButton" prefHeight="82.0" prefWidth="258.0" text="⏭">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="176.0">
+                           <children>
+                              <SplitPane id="volumeSplitPane" dividerPositions="0.21739130434782608" layoutX="-2.0" layoutY="-1.0" prefHeight="87.0" prefWidth="255.0" styleClass="Split-Pane">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView fitHeight="74.0" fitWidth="79.0" layoutX="-3.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Desktop/volumeButton.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <ProgressBar id="volumeBar" fx:id="volumeBar" layoutY="34.0" onMouseClicked="#setOnVolumeClicked" prefHeight="18.0" prefWidth="176.0" progress="0.0" styleClass="ProgressBar" stylesheets="@stylesheet.css" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children></AnchorPane>
+                    </items>
+                  </SplitPane>
+               </right>
+               <center>
+                  <SplitPane id="playSplitPane" dividerPositions="0.01098901098901099" prefHeight="86.0" prefWidth="287.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="0.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Button id="playButton" fx:id="play" layoutY="-1.0" mnemonicParsing="false" onAction="#clickedPlayButton" prefHeight="83.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="▶">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </center>
+               <left>
+                  <SplitPane id="skipBackSplitPane" prefHeight="86.0" prefWidth="283.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Button id="backButton" fx:id="back" layoutX="6.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickedBackButton" prefHeight="82.0" prefWidth="258.0" styleClass="Button" stylesheets="@stylesheet.css" text="⏮">
+                                 <font>
+                                    <Font name="Antonio Regular" size="36.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </left>
+            </BorderPane>
+         </bottom>
+         <right>
+            <ScrollBar fx:id="scrollWidget" orientation="VERTICAL" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="fileMenuBarOption" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="editMenuBarOption" mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu fx:id="helpMenuBarOption" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <ImageView fx:id="middlePicture" fitHeight="763.0" fitWidth="892.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+         </center>
+         <left>
+            <SplitPane dividerPositions="0.8922470433639947" orientation="VERTICAL" prefHeight="763.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <ListView fx:id="songList" layoutY="27.0" prefHeight="650.0" prefWidth="185.0" />
+                        <SplitPane dividerPositions="0.8888888888888888" orientation="VERTICAL" prefHeight="29.0" prefWidth="184.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TextField fx:id="searchBar" layoutX="-3.0" layoutY="-2.0" onKeyReleased="#onKeyPressedOnSearch" prefHeight="25.0" prefWidth="185.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <ToggleButton fx:id="browseButton" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="185.0" text="Browse...">
+                           <font>
+                              <Font name="Eras Light ITC" size="25.0" />
+                           </font>
+                        </ToggleButton>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

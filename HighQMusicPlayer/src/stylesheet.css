@@ -1,0 +1,64 @@
+#playButton {
+	-fx-scale-y: .96;
+	
+}
+
+
+
+/*playbackSlider*/
+#playbackSlider .track {
+  -fx-text-box-border: forestgreen;
+  -fx-control-inner-background: palegreen;
+  -fx-pref-height:10;
+  
+}
+#playbackSlider:vertical .track {
+    -fx-pref-width:10;
+}
+
+#playbackSlider .thumb{
+  -fx-pref-height: 20;
+  -fx-pref-width: 20;
+  -fx-text-box-border: #5c6166;
+  -fx-body-color: #5c6166; 
+
+}
+#playbackSlider .thumb:hover {
+  -fx-body-color: #5c6166; 
+  -fx-text-box-border: #5c6166;
+}
+
+#playbackSlider .thumb:pressed {
+    -fx-focus-color: #5c6166; 
+}
+
+#playbackSlider:focused .thumb {
+    -fx-focus-color: #5c6166; 
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+/*Split Panes*/
+#volumeSplitPane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+#volumeSplitPane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+
+.ButtonSplitPanes:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.ButtonSplitPanes:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.ButtonSplitPanes {
+   -fx-box-border: transparent;
+   -fx-inner-border: transparent;
+   -fx-background-color: transparent;
+}
+
+/*Volume Slider */
+
+#volumeBar > .bar {
+    -fx-background-color: #696969;
+}
