@@ -105,7 +105,6 @@ public class FXController extends Application implements Initializable{
 	@FXML public void onKeyPressedOnSearch(){
 		search.onKeyPressedOnSearch();
 	}
-	
 	@FXML public void onMouseReleased(){
 		slider.onMouseReleased();
 	}
