@@ -22,12 +22,10 @@ import javafx.stage.FileChooser;
 public class FXButtons {
 	FXController fxcontroller;
 	PlayerModel model;
-	FXListView listview;
 	
-	public FXButtons(FXController fxcontroller, PlayerModel model, FXListView listview){
+	public FXButtons(FXController fxcontroller, PlayerModel model){
 		this.fxcontroller = fxcontroller;
 		this.model = model;
-		this.listview = listview;
 	}
 	
 	public void clickedShuffleButton(){
