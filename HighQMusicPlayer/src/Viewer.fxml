@@ -6,16 +6,15 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 <?scenebuilder-stylesheet ../stylesheet.css?>
 
 <AnchorPane styleClass="AnchorPane" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP.FXController">
@@ -27,23 +26,26 @@
                   <Slider id="playbackSlider" fx:id="progressBar" onDragDetected="#onDragDetected" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="49.0" prefWidth="1091.0" styleClass="Sliders" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER" />
                </bottom>
                <top>
-                  <TextField fx:id="artistPane" alignment="CENTER" prefHeight="50.0" prefWidth="1065.0" text="" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="artistPane" alignment="CENTER" prefHeight="50.0" prefWidth="1065.0" promptText="Click Browse Button to Select Music Folder" text="" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Hallo Sans" size="22.0" />
+                     </font></TextField>
                </top>
                <right>
-                  <SplitPane id="skipForwardSplitPane" dividerPositions="0.5057915057915058" nodeOrientation="LEFT_TO_RIGHT" prefHeight="103.0" prefWidth="520.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                  <SplitPane id="skipForwardSplitPane" fx:id="splitPane2" dividerPositions="0.5057915057915058" nodeOrientation="LEFT_TO_RIGHT" prefHeight="103.0" prefWidth="520.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="253.0">
                            <children>
                               <Button id="skipForwardButton" fx:id="shuffle" layoutX="1.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedShuffleButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="⏭">
                                  <font>
-                                    <Font size="36.0" />
+                                    <Font name="Antonio Regular" size="30.0" />
                                  </font>
                               </Button>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="176.0">
                            <children>
-                              <SplitPane id="volumeSplitPane" dividerPositions="0.21739130434782608" layoutX="-2.0" layoutY="-1.0" prefHeight="87.0" prefWidth="255.0" styleClass="Split-Pane">
+                              <SplitPane id="volumeSplitPane" fx:id="splitPane1" dividerPositions="0.21739130434782608" layoutX="-2.0" layoutY="-1.0" prefHeight="87.0" prefWidth="255.0" styleClass="Split-Pane">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
@@ -54,7 +56,7 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="211.0">
                                        <children>
                                           <ProgressBar id="volumeBar" fx:id="volumeBar" layoutY="56.0" onMouseClicked="#setOnVolumeClicked" prefHeight="18.0" prefWidth="176.0" progress="0.0" styleClass="ProgressBar" stylesheets="@stylesheet.css" />
                                        </children>
@@ -66,14 +68,14 @@
                   </SplitPane>
                </right>
                <center>
-                  <SplitPane id="playSplitPane" dividerPositions="0.01098901098901099" prefHeight="126.0" prefWidth="288.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                  <SplitPane id="playSplitPane" fx:id="splitPane3" dividerPositions="0.01098901098901099" prefHeight="126.0" prefWidth="288.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="0.0" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Button id="playButton" fx:id="play" layoutX="10.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedPlayButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="▶">
+                              <Button id="playButton" fx:id="play" layoutY="17.0" mnemonicParsing="false" onAction="#clickedPlayButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="▶">
                                  <font>
-                                    <Font size="36.0" />
+                                    <Font name="Antonio Regular" size="36.0" />
                                  </font>
                               </Button>
                            </children>
@@ -82,13 +84,13 @@
                   </SplitPane>
                </center>
                <left>
-                  <SplitPane id="skipBackSplitPane" prefHeight="86.0" prefWidth="276.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
+                  <SplitPane id="skipBackSplitPane" fx:id="splitPane4" prefHeight="86.0" prefWidth="274.0" styleClass="ButtonSplitPanes" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Button id="skipBackButton" fx:id="back" layoutX="13.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedBackButton" prefHeight="82.0" prefWidth="258.0" styleClass="Button" stylesheets="@stylesheet.css" text="⏮">
+                              <Button id="skipBackButton" fx:id="back" layoutX="13.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickedBackButton" prefHeight="82.0" prefWidth="258.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="⏮">
                                  <font>
-                                    <Font name="Antonio Regular" size="36.0" />
+                                    <Font name="Antonio Regular" size="30.0" />
                                  </font>
                               </Button>
                            </children>
@@ -98,9 +100,6 @@
                </left>
             </BorderPane>
          </bottom>
-         <right>
-            <ScrollBar fx:id="scrollWidget" orientation="VERTICAL" BorderPane.alignment="CENTER" />
-         </right>
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
@@ -122,16 +121,13 @@
               </menus>
             </MenuBar>
          </top>
-         <center>
-            <ImageView fx:id="middlePicture" fitHeight="763.0" fitWidth="892.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-         </center>
          <left>
-            <SplitPane dividerPositions="0.8922470433639947" orientation="VERTICAL" prefHeight="763.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+            <SplitPane fx:id="splitPane5" dividerPositions="0.8922470433639947" orientation="VERTICAL" prefHeight="763.0" prefWidth="185.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <ListView id="songList" fx:id="songList" layoutY="27.0" prefHeight="650.0" prefWidth="185.0" stylesheets="@stylesheet.css" />
-                        <SplitPane dividerPositions="0.8888888888888888" orientation="VERTICAL" prefHeight="29.0" prefWidth="184.0">
+                        <SplitPane fx:id="splitPane6" dividerPositions="0.8888888888888888" orientation="VERTICAL" prefHeight="29.0" prefWidth="184.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
@@ -145,16 +141,40 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <ToggleButton fx:id="browseButton" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="185.0" text="Browse...">
+                        <Button id="browseButton" fx:id="browseButton" layoutX="-6.0" layoutY="-5.0" mnemonicParsing="false" onAction="#clickedBrowseButton" prefHeight="90.0" prefWidth="195.0" styleClass="Buttons" stylesheets="@stylesheet.css" text="Browse...">
                            <font>
-                              <Font name="Eras Light ITC" size="25.0" />
+                              <Font name="Hallo Sans" size="28.0" />
                            </font>
-                        </ToggleButton>
+                        </Button>
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
          </left>
+         <center>
+            <SplitPane dividerPositions="0.8961892247043364" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <WebView fx:id="webView" layoutY="-1.0" prefHeight="711.0" prefWidth="891.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Button id="downloadMusicButton" layoutX="439.0" layoutY="15.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@stylesheet.css" text="Download Music File From Youtube">
+                           <font>
+                              <Font name="Hallo sans Light" size="26.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="youtubeLinkTextArea" layoutX="31.0" layoutY="22.0" prefHeight="33.0" prefWidth="365.0" promptText="Enter Youtube Link Here Or Find It Above">
+                           <font>
+                              <Font name="Hallo Sans" size="20.0" />
+                           </font>
+                        </TextField>
+                     </children></AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

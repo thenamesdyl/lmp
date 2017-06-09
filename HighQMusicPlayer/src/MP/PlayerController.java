@@ -26,10 +26,9 @@ public class PlayerController{
 		
 	}
 	
-	public void playSpecificSong(int indice){
-		System.out.println(indice);
+	public void playSpecificSong(String songName){
 		try {
-			model.playSpecificSong(indice);
+			model.playSpecificSong(songName);
 		} catch (CannotReadException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

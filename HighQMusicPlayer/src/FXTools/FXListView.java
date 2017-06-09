@@ -25,24 +25,24 @@ public class FXListView {
 					if(!(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex).substring(0, 23).equals(model.getCurrentSong().substring(0, 23)))){
 							
 						fxcontroller.getPlay().setText("⏸");
-						playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+						playSpecificSong(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex));
 						
 					}
 				}else{
 					if(!(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex).equals(model.getCurrentSong()))){
 								
 						fxcontroller.getPlay().setText("⏸");
-						playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+						playSpecificSong(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex));
 							
 					}
 				}
 			}catch (NullPointerException n){
 				//if theres a null pointer exception on model.getCurrentSong, it means it hasnt started yet, therefore PLAY!!!
 				fxcontroller.getPlay().setText("⏸");			
-				playSpecificSong(fxcontroller.getSongList().selectionModelProperty().get().getSelectedIndex());
+				playSpecificSong(fxcontroller.getSongList().getItems().get(mostRecentSelectedIndex));
 						
-			}catch (ArrayIndexOutOfBoundsException a){
-						
+			}catch(ArrayIndexOutOfBoundsException a){
+				
 			}
 		});
 	}
@@ -71,13 +71,13 @@ public class FXListView {
 	
 	
 	//when someone clicks on song from listview. This is called by the listener
-	public void playSpecificSong(int indice){
+	public void playSpecificSong(String songName){
 		if(!model.isPlaying()){
 			fxcontroller.getProgressBar().setOpacity(100);
 			model.setFirstTimePlaying(false);
 			fxcontroller.getFXSlider().startSliderThread();
 		}
-		fxcontroller.getController().playSpecificSong(indice);
+		fxcontroller.getController().playSpecificSong(songName);
 		onMusicChangeSettings();
 
 	}

@@ -17,15 +17,15 @@ public class FXSearch {
 	
 	//this is triggered when a key is typed into search bar
 	public void onKeyPressedOnSearch(){
-		fxcontroller.setFileCollection(model.getFileCollection());
+
 		fxcontroller.getTempObservableList().clear();
 		
 
 		    	
 		if(!(fxcontroller.getSearchBar().getText().equals(null) || fxcontroller.getSearchBar().getText().equals(""))){
 			for(int i = 0; i < model.getNumOfFiles(); i++){
-				if(!(fxcontroller.getSearchBar().getText().length() > fxcontroller.getFileCollection()[i].getName().length())){
-					if(fxcontroller.getSearchBar().getText().toLowerCase().equals(fxcontroller.getFileCollection()[i].getName().substring(0, fxcontroller.getSearchBar().getText().length()).toLowerCase())){
+				if(fxcontroller.getSearchBar().getText().length() <= fxcontroller.getObservableList().get(i).length()){
+					if(fxcontroller.getSearchBar().getText().toLowerCase().equals(fxcontroller.getObservableList().get(i).substring(0, fxcontroller.getSearchBar().getText().length()).toLowerCase())){
 						fxcontroller.getTempObservableList().add(fxcontroller.getObservableList().get(i));
 					}
 				}

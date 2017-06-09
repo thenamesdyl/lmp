@@ -1,27 +1,33 @@
 
 /*Buttons */
-#playButton {
-  -fx-body-color: linear-gradient(to top, #7FB2F0 ,#ADD5F7);
+.Buttons:hover .text{
+    -fx-fill: #F0F4F7;
+    -fx-stroke: #000000;
+    -fx-stroke-width: 2px;
+    -fx-padding-top: 2em;
+	
+}
+.Buttons{
+   -fx-body-color: linear-gradient(to top, #7FB2F0 ,#ADD5F7);
   -fx-outer-border: #16193B;
   -fx-cell-hover-color: #35478C;
   -fx-selection-bar-text: #35478C;
   -fx-focus-color: #35478C;
 }
-#skipBackButton {
-  -fx-body-color: linear-gradient(to top, #7FB2F0 ,#ADD5F7);
-  -fx-outer-border: #16193B;
-  -fx-cell-hover-color: #35478C;
-  -fx-selection-bar-text: #35478C;
-  -fx-focus-color: #35478C;
+#browseButton:hover .text{
+	-fx-fill: #F0F4F7;
+    -fx-stroke: #000000;
+    -fx-stroke-width: 1px;
+    -fx-padding-top: 2em;
+	
 }
-#skipForwardButton {
-  -fx-body-color: linear-gradient(to top, #7FB2F0 ,#ADD5F7);
-  -fx-outer-border: #16193B;
-  -fx-cell-hover-color: #35478C;
-  -fx-selection-bar-text: #35478C;
-  -fx-focus-color: #35478C;
+#downloadMusicButton:hover .text{
+	-fx-fill: #F0F4F7;
+    -fx-stroke: #000000;
+    -fx-stroke-width: 1px;
+    -fx-padding-top: 2em;
+	
 }
-
 
 
 /*playbackSlider*/
@@ -83,7 +89,6 @@
 }
 
 /*Volume Slider */
-
 #volumeBar > .bar {
     -fx-background-color: #35478C;
 }

@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,10 +35,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class FXController extends Application implements Initializable{
@@ -50,23 +54,27 @@ public class FXController extends Application implements Initializable{
 	private int mostRecentSelectedIndex;
 	ObservableList<String> observableList = FXCollections.observableList(list);
 
-	private FXButtons buttons = new FXButtons(this, model);
+	
 	private FXSlider slider = new FXSlider(this, model);
 	private FXSearch search = new FXSearch(this, model);
 	private FXListView listview = new FXListView(this, model);
+	private FXButtons buttons = new FXButtons(this, model,listview);
 	
 	List<String> tempList = new ArrayList<String>();
 	ObservableList<String> tempObservableList = FXCollections.observableList(tempList);
 	
 	private int indice;
 	
-	//usinng fxml this grabs all the variables
-	@FXML Button shuffle, play, back;
+	//using fxml this grabs all the variables
+	@FXML Button shuffle, play, back, browseButton;
 	@FXML TextField artistPane, searchBar;
 	@FXML Slider progressBar;
 	@FXML ListView<String> songList;
 	@FXML ProgressBar volumeBar;
 	@FXML ImageView volumeImage;
+	@FXML WebView webView;
+	@FXML TextField youtubeLinkTextArea;
+	@FXML SplitPane splitPane1, splitPane2, splitPane3, splitPane4, splitPane5, splitPane6;
     
 	public static void main(String[] args) {
 		launch(args);
@@ -78,14 +86,14 @@ public class FXController extends Application implements Initializable{
 		Scene scene = new Scene(root);
 		this.primaryStage = primaryStage;
 		primaryStage.setTitle("HighQ Local Music Player");
+		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
+		
 		String css = this.getClass().getResource("../stylesheet.css").toExternalForm(); 
 		scene.getStylesheets().add(css);
-		
 	}
-	
 	
 	@FXML private void clickedPlayButton(){
 		buttons.clickedPlayButton();
@@ -99,7 +107,9 @@ public class FXController extends Application implements Initializable{
 	@FXML private void setOnVolumeClicked(MouseEvent event){
 		slider.setOnVolumeClicked(event);
 	}
-	
+	@FXML private void clickedBrowseButton(){
+		buttons.clickedBrowseButton();
+	}
 	
 	
 	@FXML public void onKeyPressedOnSearch(){
@@ -115,7 +125,22 @@ public class FXController extends Application implements Initializable{
 		slider.onDragDetected();
 	}
 	
-
+	
+	//this is called if someone uses the browse to select a new directory
+	public void resetDirectory(String path){
+		if(model.isPlaying()){
+			model.stopMusic();
+		}
+		model.resetMusicPath();
+        model.setupMusic(path);
+		listview.resetObservableList();
+		progressBar.setOpacity(0);
+		artistPane.setEditable(false);
+		artistPane.setText("");
+		artistPane.setPromptText("Click Browse Button to Select Music Folder");
+		model.setFirstTimePlaying(true);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//default settings
@@ -124,10 +149,9 @@ public class FXController extends Application implements Initializable{
 		songList.setItems(observableList);
 		progressBar.setOpacity(0);
 		artistPane.setEditable(false);
-		
-		
+		WebEngine webEngine = webView.getEngine();
+		webEngine.load("http://www.youtube.com");
 	}
-	
 	
 
 	//getters and setters
@@ -252,6 +276,22 @@ public class FXController extends Application implements Initializable{
 
 	public void setVolumeImage(ImageView volumeImage) {
 		this.volumeImage = volumeImage;
+	}
+
+	public Button getBrowseButton() {
+		return browseButton;
+	}
+
+	public void setBrowseButton(Button browseButton) {
+		this.browseButton = browseButton;
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 	}
 	
 
