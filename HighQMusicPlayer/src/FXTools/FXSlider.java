@@ -27,13 +27,14 @@ public class FXSlider {
 			
 				//this is an infinite loop because now I only need to make this thread once, pausing and starting it, as opposed to making many threads
 				for(;;){
-					Thread.sleep(220);
+					Thread.sleep(150);
 					
 					if(model.isPlaying()){
 						fxcontroller.getVolumeBar().setProgress(model.getVolume());
 						
 						//This is for progressbar for music
 						fxcontroller.getProgressBar().setValue(fxcontroller.getController().getPercentageDone());
+						
 						if(fxcontroller.getController().getPercentageDone() == 100){
 							model.shuffle();
 							fxcontroller.getFXListview().onMusicChangeSettings();
@@ -50,6 +51,10 @@ public class FXSlider {
 		 
 		new Thread(fxcontroller.getSliderThread()).start(); 
 		
+	}
+	
+	public void stopSliderThread(){
+		fxcontroller.getSliderThread().cancel();
 	}
 	
 	

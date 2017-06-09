@@ -72,7 +72,7 @@ public class FXListView {
 	
 	//when someone clicks on song from listview. This is called by the listener
 	public void playSpecificSong(String songName){
-		if(!model.isPlaying()){
+		if(model.isFirstTimePlaying()){
 			fxcontroller.getProgressBar().setOpacity(100);
 			model.setFirstTimePlaying(false);
 			fxcontroller.getFXSlider().startSliderThread();

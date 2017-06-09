@@ -58,7 +58,7 @@ public class FXController extends Application implements Initializable{
 	private FXSlider slider = new FXSlider(this, model);
 	private FXSearch search = new FXSearch(this, model);
 	private FXListView listview = new FXListView(this, model);
-	private FXButtons buttons = new FXButtons(this, model,listview);
+	private FXButtons buttons = new FXButtons(this, model);
 	
 	List<String> tempList = new ArrayList<String>();
 	ObservableList<String> tempObservableList = FXCollections.observableList(tempList);
@@ -139,6 +139,7 @@ public class FXController extends Application implements Initializable{
 		artistPane.setText("");
 		artistPane.setPromptText("Click Browse Button to Select Music Folder");
 		model.setFirstTimePlaying(true);
+		slider.stopSliderThread();
 	}
 	
 	@Override

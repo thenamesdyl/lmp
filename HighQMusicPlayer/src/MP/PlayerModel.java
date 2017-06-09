@@ -43,7 +43,6 @@ public class PlayerModel {
     public PlayerModel() {
     	//this line is required for javafx
     	final JFXPanel fxPanel = new JFXPanel();
-    	
     	String fileName = "defaultMusicPath.txt";
 
         String path = "";
@@ -56,7 +55,6 @@ public class PlayerModel {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((path = bufferedReader.readLine()) != null) {
-                System.out.println("in loop " + path);
                 break;
             }   
 
