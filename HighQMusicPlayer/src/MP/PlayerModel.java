@@ -32,8 +32,9 @@ public class PlayerModel {
 	private Media hit;
 	private String bip;
 	private boolean startLoop = false;
-	private boolean firstTime = true;
+	private boolean firstTimePlaying = true;
 	private double volumeSetting = .5;
+	private int songCounter = 0;
 	
 	//for some reason mediaPlayer does not have an isPlaying method, so I have to use this boolean
 	private boolean isPlaying = false;
@@ -43,45 +44,68 @@ public class PlayerModel {
     	//this line is required for javafx
     	final JFXPanel fxPanel = new JFXPanel();
     	
-    	//purpose of these lines is to set path, and then to add all the songs into a collection which can be referenced later. 
-    	File f = new File("C:/Users/Dylan/Desktop/music");
-    	int count = 0;
+    	String fileName = "defaultMusicPath.txt";
+
+        String path = "";
+        
+    	try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader = new FileReader(fileName);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while((path = bufferedReader.readLine()) != null) {
+                System.out.println("in loop " + path);
+                break;
+            }   
+
+            // Always close files.
+            bufferedReader.close();         
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "Unable to open file '" + 
+                fileName + "'");                
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error reading file '" 
+                + fileName + "'");                  
+            // Or we could just do this: 
+            // ex.printStackTrace();
+        }
+    	
+    	if(path != ""){
+    		setupMusic(path);
+    	}else{
+    		String username = System.getProperty("user.name");
+    		setupMusic(new String("C:/Users/" + username + "/music"));
+    	}
+	}
+    
+    public void resetMusicPath(){
+    	for(int i = 0; i < numOfFiles; i++){
+    		collectionOfFiles[i] = null;
+    	}
+    	songCounter = 0;
+    	numOfFiles = 0;
+    }
+    
+    public void setupMusic(String path){
+    	//purpose of these lines is to set path, and then to add all the songs into a collection which can be referenced later. Uses recursion if it hurts a directory
+    	File f = new File(path);
         for (File file : f.listFiles()) {
                 if (file.isFile()) {
-                	if(file.getName().substring(file.getName().length()-3, file.getName().length()).equals("wav") || file.getName().substring(file.getName().length()-3, file.getName().length()).equals("mp3")){
-                		collectionOfFiles[count] = file;
-                		count++;
+                	if(file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("wav") || file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("mp3")){
+                		collectionOfFiles[songCounter] = file;
+                		songCounter++;
                 	}
-                }
+                }else if(file.isDirectory()){
+            		setupMusic(path + "/" + file.getName());
+            	}
         }
-        numOfFiles = count;
- 
-    	
-	}
-    public void setVolume(double percent){
-    	if(isFirstTimePlaying()){
-    		volumeSetting = percent;
-    	}else{
-    		volumeSetting = percent;
-    		mediaPlayer.setVolume(percent);
-    	}
-    }
-    
-    public double getVolume(){
-    	return volumeSetting;
-    }
-    
-    //for the ObservableList for songView in FXCollection
-    public File[] getFileCollection(){
-    	return collectionOfFiles;
-    }
-    
-    
-    public double getCurrentTimeOfMusic(){
-    	return mediaPlayer.getCurrentTime().toMillis();
-    }
-    public int getNumOfFiles(){
-    	return numOfFiles;
+        numOfFiles = songCounter;
     }
 	
 	public void play() throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException{
@@ -98,13 +122,24 @@ public class PlayerModel {
 	}
 	
 	//plays specific song when one clicks the listView
-	public void playSpecificSong(int indice) throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException{
+	public void playSpecificSong(String songName) throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException{
 
 		if(isPlaying){
 			mediaPlayer.stop();
 		}
-		
-		System.out.println("here " + indice);
+		int indice = 0;
+		for(int i = 0; i < numOfFiles; i++){
+			if(songName.length() > 23 && collectionOfFiles[i].getName().length() > 23){
+				if(songName.substring(0,23).equals(collectionOfFiles[i].getName().substring(0,23))){
+					indice = i;
+					
+				}
+			}else{
+				if( songName.equals(collectionOfFiles[i].getName())){
+					indice = i;
+				}
+			}
+		}
 		currentSong = collectionOfFiles[indice];
 		bip = collectionOfFiles[indice].getPath();
 		
@@ -220,6 +255,10 @@ public class PlayerModel {
 		
 	}
 	
+	public void stopMusic(){
+		mediaPlayer.stop();
+	}
+	
 	public double getPercentageDone(){
 		if(isPlaying){
 	        
@@ -266,11 +305,43 @@ public class PlayerModel {
 		this.isPlaying = isPlaying;
 	}
 	public boolean isFirstTimePlaying() {
-		return firstTime;
+		return firstTimePlaying;
 	}
 	public void setFirstTimePlaying(boolean firstTime) {
-		this.firstTime = firstTime;
+		this.firstTimePlaying = firstTime;
 	}
+	public int getSongCounter() {
+		return songCounter;
+	}
+	public void setSongCounter(int songCounter) {
+		this.songCounter = songCounter;
+	}
+	
+    public void setVolume(double percent){
+    	
+    	//if its the first time, mediaplayer hasnt been created yet
+    	if(isFirstTimePlaying()){
+    		volumeSetting = percent;
+    	}else{
+    		volumeSetting = percent;
+    		mediaPlayer.setVolume(percent);
+    	}
+    }
+    
+    public double getVolume(){
+    	return volumeSetting;
+    }
+    //for the ObservableList for songView in FXCollection
+    public File[] getFileCollection(){
+    	return collectionOfFiles;
+    }
+    
+    public double getCurrentTimeOfMusic(){
+    	return mediaPlayer.getCurrentTime().toMillis();
+    }
+    public int getNumOfFiles(){
+    	return numOfFiles;
+    }
 	
 	
 

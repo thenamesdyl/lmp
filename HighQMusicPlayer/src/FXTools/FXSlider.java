@@ -27,7 +27,7 @@ public class FXSlider {
 			
 				//this is an infinite loop because now I only need to make this thread once, pausing and starting it, as opposed to making many threads
 				for(;;){
-					Thread.sleep(200);
+					Thread.sleep(220);
 					
 					if(model.isPlaying()){
 						fxcontroller.getVolumeBar().setProgress(model.getVolume());
@@ -81,7 +81,7 @@ public class FXSlider {
 	//volume progress bar
 	public void setOnVolumeClicked(MouseEvent event){
         double mouseX = event.getSceneX();
-        double percent = (mouseX-890)/180;
+        double percent = (mouseX-870)/180;
 
         if(percent < .2){
         	Image volumeImageMute = new Image("images/volumeButtonMute.png");
