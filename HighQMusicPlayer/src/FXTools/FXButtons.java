@@ -31,7 +31,6 @@ public class FXButtons {
 	public void clickedShuffleButton(){
 			    
 		if(model.isFirstTimePlaying() || (!model.isPlaying())){
-			//Multithreading with JavaFX. Essentially this other thread will check the slider to make sure its on track.
 			fxcontroller.getProgressBar().setOpacity(100);
 			fxcontroller.getFXSlider().startSliderThread();
 			model.setFirstTimePlaying(false);
@@ -95,17 +94,32 @@ public class FXButtons {
 			BufferedWriter bw; 
 			try {
 				File defaultMusicPath = new File("defaultMusicPath.txt");
+				
+				//using printwriter because it overwrites anything thats currently in the file.
 				PrintWriter writer = new PrintWriter(defaultMusicPath);
 				writer.print(file.getAbsolutePath());
 				writer.close();
-				System.out.println("done");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
             fxcontroller.resetDirectory(file.getAbsolutePath());
         }
+		
+		
+	}
+	
+	public void clickedDownloadMusicButton(){
+		String textLink = "";
+		System.out.println(fxcontroller.getYoutubeLinkTextArea().getText());
+		if(fxcontroller.getYoutubeLinkTextArea().getText() != null && !(fxcontroller.getYoutubeLinkTextArea().getText().equals(""))){
+			textLink = fxcontroller.getYoutubeLinkTextArea().getText();
+		}else{
+			System.out.println("here");
+			textLink = fxcontroller.getWebView().getEngine().getLocation();
+		}
+		
+		System.out.println(textLink);
 		
 		
 	}

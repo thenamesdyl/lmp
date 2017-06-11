@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayerModel {
 	private int numOfFiles;
-	private File collectionOfFiles[] = new File[500];
+	private File collectionOfFiles[] = new File[2000];
 	private File currentSong;
 	private Stack<Integer> lastRandomNumber = new Stack<Integer>();
 	private MediaPlayer mediaPlayer;
@@ -95,7 +95,7 @@ public class PlayerModel {
     	File f = new File(path);
         for (File file : f.listFiles()) {
                 if (file.isFile()) {
-                	if(file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("wav") || file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("mp3")){
+                	if(file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("wav") || file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("mp3") || file.getName().substring(file.getName().length()-3, file.getName().length()).toLowerCase().equals("m4p")){
                 		collectionOfFiles[songCounter] = file;
                 		songCounter++;
                 	}

@@ -161,7 +161,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Button id="downloadMusicButton" layoutX="439.0" layoutY="15.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@stylesheet.css" text="Download Music File From Youtube">
+                        <Button id="downloadMusicButton" fx:id="downloadMusicButton" layoutX="439.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedDownloadMusicButton" styleClass="Buttons" stylesheets="@stylesheet.css" text="Download Music File From Youtube">
                            <font>
                               <Font name="Hallo sans Light" size="26.0" />
                            </font>

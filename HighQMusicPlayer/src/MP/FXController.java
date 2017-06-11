@@ -53,6 +53,7 @@ public class FXController extends Application implements Initializable{
 	List<String> list = new ArrayList<String>();
 	private int mostRecentSelectedIndex;
 	ObservableList<String> observableList = FXCollections.observableList(list);
+	private WebEngine webEngine;
 
 	
 	private FXSlider slider = new FXSlider(this, model);
@@ -66,7 +67,7 @@ public class FXController extends Application implements Initializable{
 	private int indice;
 	
 	//using fxml this grabs all the variables
-	@FXML Button shuffle, play, back, browseButton;
+	@FXML Button shuffle, play, back, browseButton, downloadMusicButton;
 	@FXML TextField artistPane, searchBar;
 	@FXML Slider progressBar;
 	@FXML ListView<String> songList;
@@ -110,6 +111,9 @@ public class FXController extends Application implements Initializable{
 	@FXML private void clickedBrowseButton(){
 		buttons.clickedBrowseButton();
 	}
+	@FXML private void clickedDownloadMusicButton(){
+		buttons.clickedDownloadMusicButton();
+	}
 	
 	
 	@FXML public void onKeyPressedOnSearch(){
@@ -139,7 +143,9 @@ public class FXController extends Application implements Initializable{
 		artistPane.setText("");
 		artistPane.setPromptText("Click Browse Button to Select Music Folder");
 		model.setFirstTimePlaying(true);
-		slider.stopSliderThread();
+		if(sliderThread != null && sliderThread.isRunning()){
+			slider.stopSliderThread();
+		}
 	}
 	
 	@Override
@@ -150,7 +156,7 @@ public class FXController extends Application implements Initializable{
 		songList.setItems(observableList);
 		progressBar.setOpacity(0);
 		artistPane.setEditable(false);
-		WebEngine webEngine = webView.getEngine();
+		webEngine = webView.getEngine();
 		webEngine.load("http://www.youtube.com");
 	}
 	
@@ -286,13 +292,37 @@ public class FXController extends Application implements Initializable{
 	public void setBrowseButton(Button browseButton) {
 		this.browseButton = browseButton;
 	}
-
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
-
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+	}
+	public Button getDownloadMusicButton() {
+		return downloadMusicButton;
+	}
+	public void setDownloadMusicButton(Button downloadMusicButton) {
+		this.downloadMusicButton = downloadMusicButton;
+	}
+	public WebView getWebView() {
+		return webView;
+	}
+	public void setWebView(WebView webView) {
+		this.webView = webView;
+	}
+	public TextField getYoutubeLinkTextArea() {
+		return youtubeLinkTextArea;
+	}
+	public void setYoutubeLinkTextArea(TextField youtubeLinkTextArea) {
+		this.youtubeLinkTextArea = youtubeLinkTextArea;
+	}
+
+	public WebEngine getWebEngine() {
+		return webEngine;
+	}
+
+	public void setWebEngine(WebEngine webEngine) {
+		this.webEngine = webEngine;
 	}
 	
 
