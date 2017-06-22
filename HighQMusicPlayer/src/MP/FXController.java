@@ -96,6 +96,7 @@ public class FXController extends Application implements Initializable{
 		scene.getStylesheets().add(css);
 	}
 	
+	
 	@FXML private void clickedPlayButton(){
 		buttons.clickedPlayButton();
 	}
