@@ -8,4 +8,10 @@ How to Use:
 Eventually, you will be able to add music through the application. This will be done through enclosing youtube within the window. Once the
 individual navigates to the video they want with the song they want, it will download it to your newly created playlist.
 
-Project is currently dependent on Javafx, mp3spi, jaudiotagger, and tritonus_mp3. Should have used Maven, but oh well.
+
+***Dependencies:
+
+JavaFX: http://docs.oracle.com/javafx/2/installation/jfxpub-installation.htm
+mp3spi: http://www.java2s.com/Code/Jar/m/Downloadmp3spijar.htm
+JAudioTagger: http://www.java2s.com/Code/Jar/j/Downloadjaudiotagger202jar.htm
+Tritonus-mp3: https://sourceforge.net/projects/tritonus/files/
