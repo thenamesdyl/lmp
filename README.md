@@ -21,6 +21,6 @@ to the video and click download, it will download it to your selected playlist.
 
 [Tritonus-MP3](https://sourceforge.net/projects/tritonus/files/)
 
-##Planned
+## Planned
 
 More options and customizability like dimensions, shuffle vs loop, etc.
