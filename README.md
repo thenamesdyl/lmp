@@ -16,9 +16,11 @@ to the video and click download, it will download it to your selected playlist.
 [JavaFX](http://docs.oracle.com/javafx/2/installation/jfxpub-installation.htm)
 
 [mp3spi](http://www.java2s.com/Code/Jar/m/Downloadmp3spijar.htm)
+
 [JAudioTagger](http://www.java2s.com/Code/Jar/j/Downloadjaudiotagger202jar.htm)
+
 [Tritonus-MP3](https://sourceforge.net/projects/tritonus/files/)
 
-##Future Feature
+##Planned
 
 More options and customizability like dimensions, shuffle vs loop, etc.
