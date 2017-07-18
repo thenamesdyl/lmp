@@ -60,14 +60,12 @@ public class FXButtons {
 		
 		if(!model.isPlaying()){
 			fxcontroller.getPlay().setText("▶");
-			fxcontroller.getSliderThread().cancel();
 			
 			
 		}else{
 			
 			//unfortunately have to create another thread as I could not figure out how to simply pause the thread
 			fxcontroller.getPlay().setText("⏸");
-			fxcontroller.getFXSlider().startSliderThread();
 		}
 	}
 	

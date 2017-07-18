@@ -138,7 +138,9 @@ public class PlayerModel {
 				}
 			}
 		}
+		
 		currentSong = collectionOfFiles[indice];
+		lastRandomNumber.add(indice);
 		bip = collectionOfFiles[indice].getPath();
 		
 		hit = new Media(Paths.get(bip).toUri().toString());
@@ -175,9 +177,9 @@ public class PlayerModel {
 			mediaPlayer.stop();
 		}
 		//used for remembering the past songs
-		lastRandomNumber.add(randomNum);
-		randomNum = ThreadLocalRandom.current().nextInt(0, numOfFiles);
 		
+		randomNum = ThreadLocalRandom.current().nextInt(0, numOfFiles);
+		lastRandomNumber.add(randomNum);
 
 		
 		bip = collectionOfFiles[randomNum].getPath();
@@ -214,7 +216,7 @@ public class PlayerModel {
 	}
 	
 	public boolean isSongBackward(){
-		if (lastRandomNumber.size() == 0){
+		if (lastRandomNumber.size() <= 1){
 			return false;
 		}else{
 			return true;
@@ -234,7 +236,8 @@ public class PlayerModel {
 		
 		
 		//Using MediaPlayer from JavaFX and a stack to get the songs that were already played
-		int newCurrentSong = (int) lastRandomNumber.pop();
+		lastRandomNumber.pop();
+		int newCurrentSong = (int) lastRandomNumber.peek();
 		bip = collectionOfFiles[newCurrentSong].getPath();
 		currentSong = collectionOfFiles[newCurrentSong];
 		
