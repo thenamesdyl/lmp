@@ -67,6 +67,7 @@ public class FXButtons {
 			//unfortunately have to create another thread as I could not figure out how to simply pause the thread
 			fxcontroller.getPlay().setText("⏸");
 		}
+			
 	}
 	
 	
